@@ -20,7 +20,7 @@ horner:=proc(p,a)
 		H[2,i+1]:=H[3,i]*a;
 		H[3,i+1]:=H[1,i+1]+H[2,i+1];
 	end;
-	printf("%4d\n\n",H);		
+	printf("%10d\n\n",H);		
 	H[3,n+1],add(H[3,i]*x^(n-i),i=1..n);	
 end:
 
@@ -37,18 +37,25 @@ cand:=proc(p)
 end:
 
 intr:=proc(poly)
-	local h,p,a,d,r;
+	local h,p,a,d,r,n,k;
 	p:=poly;
 	d:=cand(p);
-	r:=();
+	r:=();k:=0;
+	n:=degree(p);
 	for a in d do
+	 if k=n then break end;	
 	 h:=horner(p,a);
 	 while h[1]=0 do	
+		k:=k+1;		
 		p:=h[2];
 		r:=r,a;
-		print(p);			
+		print(p);
+		if k=n then break end;				
 		h:=horner(p,a);
 	 end;
 	end;
 	return r;
 end:
+
+p:=poly([seq(a,a=0..14)]);
+intr(p);
