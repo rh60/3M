@@ -1,4 +1,4 @@
-poly:=proc(a)
+poly:=proc(a::seq(integer))
 	local p,r;
 	p:=1;
 	for r in a do
@@ -57,5 +57,5 @@ intr:=proc(poly)
 	return r;
 end:
 
-p:=poly([seq(a,a=0..14)]);
+p:=poly(seq(a,a=0..14));
 intr(p);
