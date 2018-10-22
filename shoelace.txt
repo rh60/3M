@@ -1,0 +1,22 @@
+circ:=proc(n,i)
+	local k;
+	k:=i mod n;
+	if k=0 then k:=n end;	
+	k;	
+end:
+
+shoelace:=proc(x,y)
+	local n;
+	n:=numelems(x);	
+	add(x[circ(n,i)]*y[circ(n,i+1)]-y[circ(n,i)]*x[circ(n,i+1)],i=1..n)/2; 
+end:
+
+circle:=proc(n)
+	local h,x,y;
+	h:=2*Pi/n;
+	x:=seq(cos(k*h),k=1..n);
+     y:=seq(sin(k*h),k=1..n);
+	[x],[y];	
+end:
+
+evalf(shoelace(circle(1000)));
