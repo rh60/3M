@@ -1,0 +1,24 @@
+astroid:=proc(n)
+local h,x,y;
+	h:=evalf(2*Pi/n);	
+	x:=seq(cos(k*h)^3,k=1..n);
+	y:=seq(sin(k*h)^3,k=1..n);
+	[x],[y]
+end:
+
+draw:=proc(x,y)
+local x1,y1;
+x1:=op(x),x[1];
+y1:=op(y),y[1];
+plot([x1],[y1],axes=none);
+end:
+
+Gauss:=proc(x,y)
+local a,n,i;
+n:=numelems(x);
+a:=x[n]*y[1]-y[n]*x[1];
+for i from 1 to n-1 do
+	a:=a+x[i]*y[i+1]-y[i]*x[i+1];	
+end;
+a/2;
+end:
