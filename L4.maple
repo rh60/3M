@@ -1,0 +1,15 @@
+sqrT:=proc(x,a0,n:=5)
+	local i,a,a1,r,T;
+	T:=unapply(mtaylor(sqrt(1+t),t=0,n),t);
+	a:=evalf(a0);
+	r:=x-a^2;
+	for i from 1 to 5 do
+		a1:=a*T(r/a^2);
+		if a1=a then break else a:=a1 end; 
+		r:=x-a^2;
+		print(a,r);	
+	end;
+	a;
+end:
+
+Digits:=50;sqrT(10,3);
